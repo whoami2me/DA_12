@@ -25,5 +25,11 @@ print(modified_ua.text)
 print("end of part 5 \n**************************")
 
 
-#part6 
-#part7
+
+   Page_selector = '.next a ::attr(href)'
+   next_page = response.css(Page_selector).extract_first()
+   if next_page:
+    yield scrapy.Request(
+      response.urljoin(next_page),
+      callback=self.parse
+    )
