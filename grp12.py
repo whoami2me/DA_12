@@ -24,7 +24,16 @@ print(modified_ua.text)
 
 print("end of part 5 \n**************************")
 
-
+class NewSpider(scrapy.Spider):
+ name = "new spider"
+ start_urls = ["https://www.ite.edu.sg"]
+ def parse(self,response):
+  css_selector = 'img'
+  for x in response.css(css_selector):
+   newsel = '@src'
+   yield{
+    'Image Link' : x.xpath(newsel).extract_first(),
+   }
    Page_selector = '.next a ::attr(href)'
    next_page = response.css(Page_selector).extract_first()
    if next_page:
