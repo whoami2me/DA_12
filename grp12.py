@@ -25,7 +25,6 @@ print(modified_ua.text)
 print("end of part 5 \n**************************")
 
 
-
    Page_selector = '.next a ::attr(href)'
    next_page = response.css(Page_selector).extract_first()
    if next_page:
@@ -33,3 +32,5 @@ print("end of part 5 \n**************************")
       response.urljoin(next_page),
       callback=self.parse
     )
+    
+#missing 6ii , 6iii and 8 
