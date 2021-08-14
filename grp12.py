@@ -1,36 +1,27 @@
-# Use the request library
 import requests
 
-# Set the target webpage
 url = input("Please enter url:")
-r = requests.get(url)
+req = requests.get(url)
 
-# This will get the full page
-print(r.text)
-
-# This will get the status code
 print("Status code:")
-print("\t *", r.status_code)
+print("\t *", req.status_code)
 
-# This will just get just the headers
-h = requests.head(url)
+header = requests.head(url)
 print("Header:")
 print("**********")
 
-# To print line by line
-for x in h.headers:
-    print("\t", x, ":", h.headers[x])
+for line in header.headers:
+    print("\t", line, ":", head.headers[line])
 print("**********")
 
-# This will modify the headers user-agent
 headers = {
     'User-Agent' : 'Mobile'
 }
 
 # Test it on an external site
 url2 = input("Please enter url2:")
-rh = requests.get(url2, headers=headers)
-print(rh.text)
+modified_ua = requests.get(url2, headers=headers)
+print(modified_ua.text)
 
 
 
