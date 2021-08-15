@@ -42,4 +42,4 @@ class NewSpider(scrapy.Spider):
       callback=self.parse
     )
     
-#missing 6ii , 6iii and 8 
+#missing 6ii and 6iii 
