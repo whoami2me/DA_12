@@ -1,5 +1,5 @@
 import requests
-import scrappy
+import scrapy
 
 url = input("Please enter url:")
 r = requests.get(url)
