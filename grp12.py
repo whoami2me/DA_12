@@ -1,26 +1,27 @@
 import requests
+import scrappy
 
 url = input("Please enter url:")
-req = requests.get(url)
+r = requests.get(url)
 
 print("Status code:")
-print("\t *", req.status_code)
+print("\t *", r.status_code)
 
-header = requests.head(url)
+h = requests.head(url)
 print("Header:")
 print("**********")
 
-for line in header.headers:
-    print("\t", line, ":", head.headers[line])
+for line in h.headers:
+    print("\t", line, ":", h.headers[line])
 print("**********")
 
-headers = {
+head = {
     'User-Agent' : 'Mobile'
 }
 
 url2 = input("Please enter url2:")
-modified_ua = requests.get(url2, headers=headers)
-print(modified_ua.text)
+modified_ua = requests.get(url2, headers=head)
+print(modified_ua.content)
 
 print("end of part 5 \n**************************")
 
