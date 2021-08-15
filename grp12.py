@@ -15,12 +15,12 @@ for line in h.headers:
     print("\t", line, ":", h.headers[line])
 print("**********")
 
-head = {
+headers = {
     'User-Agent' : 'Mobile'
 }
 
 url2 = input("Please enter url2:")
-modified_ua = requests.get(url2, headers=head)
+modified_ua = requests.get(url2, headers=headers)
 print(modified_ua.text)
 
 print("end of part 5 \n**************************")
