@@ -27,7 +27,7 @@ print("end of part 5 \n**************************")
 
 class NewSpider(scrapy.Spider):
  name = "new spider"
- start_urls = input("pls enter a url")
+ start_urls = [input("pls enter a url")]
  def parse(self,response):
   css_selector = 'img'
   for x in response.css(css_selector):
