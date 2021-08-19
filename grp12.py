@@ -34,17 +34,17 @@ class NewSpider(scrapy.Spider):
   for x in response.css(css_selector):
        url = x.get()
        if any(extension in url for extension in ['jpg']):
-       newsel = '@src'
-       yield{
-         'Image Link' : x.xpath(newsel).extract_first(),
-       }
+        newsel = '@src'
+        yield{
+          'Image Link' : x.xpath(newsel).extract_first(),
+        }
         
-       Page_selector = '.next a ::attr(href)'
-       next_page = response.css(Page_selector).extract_first()
-       if next_page:
-         yield scrapy.Request(
-         response.urljoin(next_page),
-         callback=self.parse
-         )
+        Page_selector = '.next a ::attr(href)'
+        next_page = response.css(Page_selector).extract_first()
+        if next_page:
+          yield scrapy.Request(
+          response.urljoin(next_page),
+          callback=self.parse
+          )
 
 #all done 
