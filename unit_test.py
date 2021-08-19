@@ -21,11 +21,11 @@ class TestExample(BetamaxTestCase):
         
         result = new_spider.parse(scrapy_response)
         
-        self.assertEqual({'Image Link': u'image1.img'}, result.next())
-        self.assertEqual({'Image Link': u'image2.img'}, result.next())
-        self.assertEqual({'Image Link': u'image3.img'}, result.next())
-        self.assertEqual({'Image Link': u'image4.img'}, result.next())
-        self.assertEqual({'Image Link': u'image5.img'}, result.next())
+        self.assertEqual({'Image Link': u'image1.jpg'}, result.next())
+        self.assertEqual({'Image Link': u'image2.jpg'}, result.next())
+        self.assertEqual({'Image Link': u'image3.jpg'}, result.next())
+        self.assertEqual({'Image Link': u'image4.jpg'}, result.next())
+        self.assertEqual({'Image Link': u'image5.jpg'}, result.next())
         
         with self.assertRaises(StopIteration):
             result.next()
