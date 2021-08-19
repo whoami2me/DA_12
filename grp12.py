@@ -42,5 +42,8 @@ class NewSpider(scrapy.Spider):
       response.urljoin(next_page),
       callback=self.parse
     )
-    
+
+    url = x.get()
+        if any(extension in url for extension in ['jpg']):
+            newsel = '@src'
 #missing 6ii and 6iii 
