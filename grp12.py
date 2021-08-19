@@ -32,8 +32,7 @@ class NewSpider(scrapy.Spider):
  def parse(self,response):
   css_selector = 'img'
   for x in response.css(css_selector):
-       url = x.get()
-       if any(extension in url for extension in ['jpg']):
+
         newsel = '@src'
         yield{
           'Image Link' : x.xpath(newsel).extract_first(),
