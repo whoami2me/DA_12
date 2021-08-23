@@ -46,4 +46,4 @@ class NewSpider(scrapy.Spider):
           callback=self.parse
           )
 
-#all done 
+#all dne 
