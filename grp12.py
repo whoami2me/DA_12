@@ -1,12 +1,12 @@
 import requests
 import scrapy
 
-# need function 
-url = input("Please enter url:")
-r = requests.get(url)
+url = 'https://brickset.com/sets/year-2009'
+req = requests.get(url)
+print(req.text)
 
 print("Status code:")
-print("\t *", r.status_code)
+print("\t *", req.status_code)
 
 h = requests.head(url)
 print("Header:")
@@ -17,27 +17,26 @@ for line in h.headers:
 print("**********")
 
 headers = {
-    'User-Agent' : 'Mobile'
+    'User-Agent': 'Mobile'
 }
+modified_ua = requests.get(url, headers=headers)
+print(modified_ua.request.headers)
+print("**************")
 
-url2 = input("Please enter url:")
-modified_ua = requests.get(url2, headers=headers)
-print(modified_ua.text)
+class BrickSetSpider(scrapy.Spider):
+    name = "brickset_spider"
+    start_urls = ['https://brickset.com/sets/year-2009']
 
-print("end of part 5 \n**************************")
+    def parse(self, response):
+        SET_SELECTOR = '.set'
+        for brickset in response.css(SET_SELECTOR):
+            urls = brickset.get()
+            if any(extension in urls for extension in ['.jpg']):
+                IMAGE_SELECTOR = 'img ::attr(src)'
+                yield {
+                 'Image Link': brickset.css(IMAGE_SELECTOR).extract_first(),
+                }
 
-class NewSpider(scrapy.Spider):
- name = "new spider"
- start_urls = [input("pls enter a url")]
- def parse(self,response):
-  css_selector = 'img'
-  for x in response.css(css_selector):
-
-        newsel = '@src'
-        yield{
-          'Image Link' : x.xpath(newsel).extract_first(),
-        }
-        
         Page_selector = '.next a ::attr(href)'
         next_page = response.css(Page_selector).extract_first()
         if next_page:
@@ -46,4 +45,3 @@ class NewSpider(scrapy.Spider):
           callback=self.parse
           )
 
-#all dne 
