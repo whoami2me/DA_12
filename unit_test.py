@@ -15,11 +15,6 @@ class test_part5(TestCase):
         responseua = grp12.modified_ua
         self.assertEqual(responseua.request.headers, {'User-Agent': 'Mobile', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'})
 
-class test_filetype(TestCase):
-    def test_file_jpg(self):
-        file = open("resultsss.json")
-        self.assertEqual(file, "image1.jpg")
-
 if __name__ == '__main__':
     unittest.main()
 
