@@ -22,8 +22,7 @@ headers = {
 }
 modified_ua = requests.get(url, headers=headers)
 print(modified_ua.request.headers)
-print("**************")
-
+print("**********")
 
 class BrickSetSpider(scrapy.Spider):
     name = "brickset_spider"
@@ -54,11 +53,11 @@ class test_part(TestCase):
         response = requests.get(sample_url)
         self.assertEqual(response.status_code, 200)
 
-    def mua(self):
+    def test_mua(self):
         sample_url2 = 'https://brickset.com/sets/year-2009'
         headers = {'User-Agent': 'Mobile'}
         responseua = requests.get(sample_url2, headers=headers)
-        self.assertEqual(responseua.request.headers, 'Mobile')
+        self.assertEqual(responseua.request.headers, {'User-Agent': 'Mobile', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'})
 
     def test_json(self):
         f = open("resultss.json",)
