@@ -1,7 +1,6 @@
 import requests
 import scrapy
 from unittest import TestCase
-import json
 
 url = 'https://brickset.com/sets/year-2009'
 req = requests.get(url)
