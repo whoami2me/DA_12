@@ -58,9 +58,3 @@ class test_part(TestCase):
         headers = {'User-Agent': 'Mobile'}
         responseua = requests.get(sample_url2, headers=headers)
         self.assertEqual(responseua.request.headers, {'User-Agent': 'Mobile', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'})
-
-    def test_json(self):
-        f = open("resultss.json",)
-        data_jpg = json.loads(f.read())
-        self.assertEqual(data_jpg[0], {"Image Link": "https://images.brickset.com/sets/small/2009-1.jpg?201012241125"})
-        f.close()
