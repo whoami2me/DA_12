@@ -1,21 +1,27 @@
+# Use the Request Library
 import requests
 import scrapy
 from unittest import TestCase
 
+# Set the Target Website
 url = 'https://brickset.com/sets/year-2009'
 req = requests.get(url)
 
+# This will get the status code
 print("Status code:")
 print("\t *", req.status_code)
 
+# This will get only just the headers
 h = requests.head(url)
 print("Header:")
 print("**********")
 
+# To print line by line
 for line in h.headers:
     print("\t", line, ":", h.headers[line])
 print("**********")
 
+# This will modify the headers user-agent
 headers = {
     'User-Agent': 'Mobile'
 }
@@ -23,6 +29,7 @@ modified_ua = requests.get(url, headers=headers)
 print(modified_ua.request.headers)
 print("**********")
 
+# Recursively look into other link to extraxt any other files
 class BrickSetSpider(scrapy.Spider):
     name = "brickset_spider"
     start_urls = ['https://brickset.com/sets/year-2009']
@@ -36,7 +43,8 @@ class BrickSetSpider(scrapy.Spider):
                 yield {
                  'Image Link': brickset.css(IMAGE_SELECTOR).extract_first(),
                 }
-
+       
+# To recurse to next page
         Page_selector = '.next a ::attr(href)'
         next_page = response.css(Page_selector).extract_first()
         if next_page:
@@ -44,7 +52,8 @@ class BrickSetSpider(scrapy.Spider):
           response.urljoin(next_page),
           callback=self.parse
           )
-
+        
+# Test Case 
 class test_part(TestCase):
 
     def test_sc(self):
